@@ -24,6 +24,9 @@ export const DOCUMENT_STATUSES = [
 
 export type DocumentStatus = (typeof DOCUMENT_STATUSES)[number];
 
+/** Supported citation formatting styles for AI agents. */
+export type CitationFormat = "markdown" | "numeric" | "none";
+
 /** Supported auth table references. */
 export type VectorAuthTable = TableDef | string;
 
@@ -86,6 +89,9 @@ export interface VectorOptions {
   defaultChunkOverlap?: number;
   searchLimit?: number;
   searchThreshold?: number;
+  taskTypeDocument?: string;
+  taskTypeQuery?: string;
+  citationFormat?: CitationFormat;
   routePrefix?: string;
   canonical?: string;
   names?: VectorNames;
@@ -105,6 +111,9 @@ export interface ResolvedOptions {
   defaultChunkOverlap: number;
   searchLimit: number;
   searchThreshold: number;
+  taskTypeDocument: string;
+  taskTypeQuery: string;
+  citationFormat: CitationFormat;
   routePrefix: string;
   canonical: string | undefined;
   names: Required<VectorNames>;
@@ -163,7 +172,7 @@ export function resolveOptions(opts: VectorOptions = {}): ResolvedOptions {
     defaultChunkSize > 10000
   ) {
     throw new Error(
-      "resolveOptions: `defaultChunkSize` must be an integer between 20 and 10000 characters.",
+      `resolveOptions: \`defaultChunkSize\` must be an integer between 20 and 10000, got ${defaultChunkSize}.`,
     );
   }
 
@@ -175,7 +184,7 @@ export function resolveOptions(opts: VectorOptions = {}): ResolvedOptions {
     defaultChunkOverlap >= defaultChunkSize
   ) {
     throw new Error(
-      "resolveOptions: `defaultChunkOverlap` must be an integer >= 0 and < defaultChunkSize.",
+      `resolveOptions: \`defaultChunkOverlap\` must be an integer >= 0 and < defaultChunkSize, got ${defaultChunkOverlap}.`,
     );
   }
 
@@ -187,7 +196,7 @@ export function resolveOptions(opts: VectorOptions = {}): ResolvedOptions {
     searchLimit > 100
   ) {
     throw new Error(
-      "resolveOptions: `searchLimit` must be an integer between 1 and 100.",
+      `resolveOptions: \`searchLimit\` must be an integer between 1 and 100, got ${searchLimit}.`,
     );
   }
 
@@ -198,34 +207,45 @@ export function resolveOptions(opts: VectorOptions = {}): ResolvedOptions {
     searchThreshold > 1.0
   ) {
     throw new Error(
-      "resolveOptions: `searchThreshold` must be a number between 0.0 and 1.0.",
+      `resolveOptions: \`searchThreshold\` must be a number between 0.0 and 1.0, got ${searchThreshold}.`,
     );
   }
 
-  let routePrefix = opts.routePrefix ?? "vector";
-  routePrefix = routePrefix.replace(/^\/+|\/+$/g, "");
-  if (!routePrefix) {
-    throw new Error("resolveOptions: `routePrefix` cannot be empty.");
+  const taskTypeDocument = opts.taskTypeDocument ?? "RETRIEVAL_DOCUMENT";
+  const taskTypeQuery = opts.taskTypeQuery ?? "RETRIEVAL_QUERY";
+  const citationFormat = opts.citationFormat ?? "markdown";
+
+  if (opts.names) {
+    for (const [k, v] of Object.entries(opts.names)) {
+      if (typeof v !== "string" || !v.trim()) {
+        throw new Error(`resolveOptions: names.${k} must be a non-empty string.`);
+      }
+    }
   }
 
+  let routePrefix = opts.routePrefix ?? "vector";
   if (opts.canonical !== undefined) {
-    if (typeof opts.canonical !== "string" || !CANONICAL_PATTERN.test(opts.canonical)) {
+    const trimmed = opts.canonical.trim();
+    if (!trimmed || !CANONICAL_PATTERN.test(trimmed)) {
       throw new Error(
-        `resolveOptions: canonical "${opts.canonical}" must match pattern ${CANONICAL_PATTERN}.`,
+        `resolveOptions: \`canonical\` must match ${CANONICAL_PATTERN}, got "${opts.canonical}".`,
       );
     }
+    routePrefix = trimmed;
   }
+
+  routePrefix = routePrefix.replace(/^\/+|\/+$/g, "");
 
   const names: Required<VectorNames> = {
-    ...DEFAULT_NAMES,
-    ...opts.names,
+    document: opts.names?.document ?? (opts.canonical ? `${opts.canonical}_document` : DEFAULT_NAMES.document),
+    chunk: opts.names?.chunk ?? (opts.canonical ? `${opts.canonical}_chunk` : DEFAULT_NAMES.chunk),
+    embedFn: opts.names?.embedFn ?? (opts.canonical ? `${opts.canonical}/generate_embedding` : DEFAULT_NAMES.embedFn),
+    chunkFn: opts.names?.chunkFn ?? (opts.canonical ? `${opts.canonical}/chunk_text` : DEFAULT_NAMES.chunkFn),
+    ingestFn: opts.names?.ingestFn ?? (opts.canonical ? `${opts.canonical}/ingest_document` : DEFAULT_NAMES.ingestFn),
+    searchFn: opts.names?.searchFn ?? (opts.canonical ? `${opts.canonical}/search_vectors` : DEFAULT_NAMES.searchFn),
+    searchTool: opts.names?.searchTool ?? DEFAULT_NAMES.searchTool,
+    apiGroup: opts.names?.apiGroup ?? (opts.canonical ? `Vector (${opts.canonical})` : DEFAULT_NAMES.apiGroup),
   };
-
-  for (const [k, v] of Object.entries(names)) {
-    if (typeof v !== "string" || !v.trim()) {
-      throw new Error(`resolveOptions: names.${k} must be a non-empty string.`);
-    }
-  }
 
   const tags = opts.tags ?? ["vector", "ai", "search"];
 
@@ -241,6 +261,9 @@ export function resolveOptions(opts: VectorOptions = {}): ResolvedOptions {
     defaultChunkOverlap,
     searchLimit,
     searchThreshold,
+    taskTypeDocument,
+    taskTypeQuery,
+    citationFormat,
     routePrefix,
     canonical: opts.canonical,
     names,

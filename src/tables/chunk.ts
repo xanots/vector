@@ -19,6 +19,10 @@ export function chunkTable(opts: ResolvedOptions, document: DocumentTable) {
         required: true,
         description: "The document this chunk was generated from.",
       }),
+      document_title: f.text({
+        required: false,
+        description: "Title of the parent document.",
+      }),
       chunk_index: f.int({
         required: true,
         description: "0-based sequence index of the chunk within the document.",
@@ -69,6 +73,7 @@ export const PUBLIC_CHUNK_FIELDS = [
   "id",
   "created_at",
   "document_id",
+  "document_title",
   "chunk_index",
   "content",
   "mime_type",
@@ -80,6 +85,7 @@ export interface PublicChunk {
   id: number;
   created_at: number;
   document_id: number;
+  document_title?: string;
   chunk_index: number;
   content: string;
   mime_type: string;

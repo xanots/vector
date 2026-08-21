@@ -238,7 +238,7 @@
         }
       },
       {
-        "name": "vector_document",
+        "name": "vec_document",
         "description": "Source documents and media assets managed by the vector pipeline.",
         "docs": "",
         "auth": false,
@@ -887,13 +887,13 @@
           "version": 0,
           "guid": ""
         },
-        "guid": "9013fec6b23172ba8ef3213a6fcd70ad",
+        "guid": "db281d68b7ca1abdf062344f187cd801",
         "import": {
           "mode": "standard"
         }
       },
       {
-        "name": "vector_chunk",
+        "name": "vec_chunk",
         "description": "Document chunks and multimodal embeddings for semantic vector search.",
         "docs": "",
         "auth": false,
@@ -1003,7 +1003,7 @@
                 "name": "@",
                 "disabled": false,
                 "arg": [
-                  "dbo=9013fec6b23172ba8ef3213a6fcd70ad"
+                  "dbo=db281d68b7ca1abdf062344f187cd801"
                 ]
               }
             ],
@@ -1014,6 +1014,42 @@
             },
             "is_settings_registry": false,
             "description": "The document this chunk was generated from."
+          },
+          {
+            "name": "document_title",
+            "type": "text",
+            "_xsid": "",
+            "nullable": false,
+            "default": "",
+            "merge": false,
+            "hidden": [],
+            "override": [],
+            "customize": {},
+            "required": false,
+            "values": [],
+            "mode": "",
+            "format": "",
+            "sensitive": false,
+            "list": {
+              "min": "",
+              "max": ""
+            },
+            "vector": {
+              "size": 3
+            },
+            "access": "public",
+            "style": {
+              "type": "single"
+            },
+            "children": [],
+            "methods": [],
+            "market_item": {
+              "id": 0,
+              "version": 0,
+              "guid": ""
+            },
+            "is_settings_registry": false,
+            "description": "Title of the parent document."
           },
           {
             "name": "chunk_index",
@@ -1342,7 +1378,7 @@
           "version": 0,
           "guid": ""
         },
-        "guid": "0d67c27e8f82d2a5d84594f58eea3c21",
+        "guid": "81f3a573d4fa39e93f8c6cf3cb62450a",
         "import": {
           "mode": "standard"
         }
@@ -1351,7 +1387,7 @@
     "addon": [],
     "function": [
       {
-        "name": "vector/generate_embedding",
+        "name": "vec/generate_embedding",
         "description": "Generates a 768-dimensional multimodal vector embedding for text, images, audio, or video using Google Gemini Embeddings 2.",
         "docs": "",
         "workspace": {
@@ -2147,10 +2183,10 @@
         "shared_workspace": {
           "is_shared": false
         },
-        "guid": "c0b77af2dc064ffa7a9ada4fa94c160d"
+        "guid": "5c029defd338097308c970ed97711460"
       },
       {
-        "name": "vector/chunk_text",
+        "name": "vec/chunk_text",
         "description": "Segments input text into structured chunks based on the chosen strategy (fixed, paragraph, sentence, markdown, custom).",
         "docs": "",
         "workspace": {
@@ -2480,10 +2516,10 @@
         "shared_workspace": {
           "is_shared": false
         },
-        "guid": "5973da3ba3df86eb53ab80d1fb8aa59e"
+        "guid": "d5cfb4ef181c5df31c30ee5dd6ff7e68"
       },
       {
-        "name": "vector/ingest_document",
+        "name": "vec/ingest_document",
         "description": "Fetches a document/media record, chunks text (or processes media), generates Gemini embeddings, and saves chunks.",
         "docs": "",
         "workspace": {
@@ -2642,7 +2678,7 @@
             },
             "context": {
               "dbo": {
-                "id": "9013fec6b23172ba8ef3213a6fcd70ad"
+                "id": "db281d68b7ca1abdf062344f187cd801"
               }
             },
             "runtime": null,
@@ -2857,7 +2893,7 @@
             },
             "context": {
               "dbo": {
-                "id": "9013fec6b23172ba8ef3213a6fcd70ad"
+                "id": "db281d68b7ca1abdf062344f187cd801"
               }
             },
             "runtime": null,
@@ -2879,7 +2915,7 @@
             },
             "context": {
               "dbo": {
-                "id": "0d67c27e8f82d2a5d84594f58eea3c21"
+                "id": "81f3a573d4fa39e93f8c6cf3cb62450a"
               },
               "search": {
                 "expression": [
@@ -3072,7 +3108,7 @@
                     },
                     "context": {
                       "function": {
-                        "id": "c0b77af2dc064ffa7a9ada4fa94c160d"
+                        "id": "5c029defd338097308c970ed97711460"
                       }
                     },
                     "runtime": null,
@@ -3107,6 +3143,15 @@
                       {
                         "name": "document_id",
                         "value": "doc.id",
+                        "tag": "var",
+                        "filters": [],
+                        "ignore": false,
+                        "expand": false,
+                        "children": []
+                      },
+                      {
+                        "name": "document_title",
+                        "value": "doc.title",
                         "tag": "var",
                         "filters": [],
                         "ignore": false,
@@ -3176,7 +3221,7 @@
                     },
                     "context": {
                       "dbo": {
-                        "id": "0d67c27e8f82d2a5d84594f58eea3c21"
+                        "id": "81f3a573d4fa39e93f8c6cf3cb62450a"
                       }
                     },
                     "runtime": null,
@@ -3264,7 +3309,7 @@
                     },
                     "context": {
                       "function": {
-                        "id": "5973da3ba3df86eb53ab80d1fb8aa59e"
+                        "id": "d5cfb4ef181c5df31c30ee5dd6ff7e68"
                       }
                     },
                     "runtime": null,
@@ -3334,7 +3379,7 @@
                           },
                           "context": {
                             "function": {
-                              "id": "c0b77af2dc064ffa7a9ada4fa94c160d"
+                              "id": "5c029defd338097308c970ed97711460"
                             }
                           },
                           "runtime": null,
@@ -3369,6 +3414,15 @@
                             {
                               "name": "document_id",
                               "value": "doc.id",
+                              "tag": "var",
+                              "filters": [],
+                              "ignore": false,
+                              "expand": false,
+                              "children": []
+                            },
+                            {
+                              "name": "document_title",
+                              "value": "doc.title",
                               "tag": "var",
                               "filters": [],
                               "ignore": false,
@@ -3438,7 +3492,7 @@
                           },
                           "context": {
                             "dbo": {
-                              "id": "0d67c27e8f82d2a5d84594f58eea3c21"
+                              "id": "81f3a573d4fa39e93f8c6cf3cb62450a"
                             }
                           },
                           "runtime": null,
@@ -3642,7 +3696,7 @@
             },
             "context": {
               "dbo": {
-                "id": "9013fec6b23172ba8ef3213a6fcd70ad"
+                "id": "db281d68b7ca1abdf062344f187cd801"
               }
             },
             "runtime": null,
@@ -3660,10 +3714,10 @@
         "shared_workspace": {
           "is_shared": false
         },
-        "guid": "4315bed84a631f5fc015a192805bd85c"
+        "guid": "565fb970cb72479e54c460577fc05fe0"
       },
       {
-        "name": "vector/search_vectors",
+        "name": "vec/search_vectors",
         "description": "Performs semantic similarity search over document chunks using Gemini 768-dim embeddings and pgvector.",
         "docs": "",
         "workspace": {
@@ -4158,7 +4212,7 @@
                     },
                     "context": {
                       "function": {
-                        "id": "c0b77af2dc064ffa7a9ada4fa94c160d"
+                        "id": "5c029defd338097308c970ed97711460"
                       }
                     },
                     "runtime": null,
@@ -4216,13 +4270,13 @@
             },
             "context": {
               "dbo": {
-                "id": "0d67c27e8f82d2a5d84594f58eea3c21",
-                "as": "vector_chunk"
+                "id": "81f3a573d4fa39e93f8c6cf3cb62450a",
+                "as": "vec_chunk"
               },
               "eval": [
                 {
                   "as": "distance",
-                  "name": "vector_chunk.embedding",
+                  "name": "vec_chunk.embedding",
                   "filters": [
                     {
                       "name": "vector_cos_distance",
@@ -4280,7 +4334,7 @@
         "shared_workspace": {
           "is_shared": false
         },
-        "guid": "ab04c2be0663b56946acdcb679f762be"
+        "guid": "b864c426c9cd4ea8c9f753c2a2b0515c"
       }
     ],
     "middleware": [],
@@ -4297,7 +4351,7 @@
         "verb": "POST",
         "disabled": false,
         "app": {
-          "id": "84708b53a18c5ddf06dd3bdf5ce2eadf"
+          "id": "a0dec0589ec6e64f5f8d4043e0879d8e"
         },
         "cache": {
           "active": false,
@@ -4848,7 +4902,7 @@
             },
             "context": {
               "dbo": {
-                "id": "9013fec6b23172ba8ef3213a6fcd70ad"
+                "id": "db281d68b7ca1abdf062344f187cd801"
               }
             },
             "runtime": null,
@@ -4880,7 +4934,7 @@
             },
             "context": {
               "function": {
-                "id": "4315bed84a631f5fc015a192805bd85c"
+                "id": "565fb970cb72479e54c460577fc05fe0"
               }
             },
             "runtime": null,
@@ -4921,7 +4975,7 @@
             },
             "context": {
               "dbo": {
-                "id": "9013fec6b23172ba8ef3213a6fcd70ad"
+                "id": "db281d68b7ca1abdf062344f187cd801"
               }
             },
             "runtime": null,
@@ -4949,7 +5003,7 @@
         "verb": "GET",
         "disabled": false,
         "app": {
-          "id": "84708b53a18c5ddf06dd3bdf5ce2eadf"
+          "id": "a0dec0589ec6e64f5f8d4043e0879d8e"
         },
         "cache": {
           "active": false,
@@ -5083,7 +5137,7 @@
             },
             "context": {
               "dbo": {
-                "id": "9013fec6b23172ba8ef3213a6fcd70ad"
+                "id": "db281d68b7ca1abdf062344f187cd801"
               },
               "search": {
                 "expression": [
@@ -5167,7 +5221,7 @@
         "verb": "GET",
         "disabled": false,
         "app": {
-          "id": "84708b53a18c5ddf06dd3bdf5ce2eadf"
+          "id": "a0dec0589ec6e64f5f8d4043e0879d8e"
         },
         "cache": {
           "active": false,
@@ -5284,7 +5338,7 @@
             },
             "context": {
               "dbo": {
-                "id": "9013fec6b23172ba8ef3213a6fcd70ad"
+                "id": "db281d68b7ca1abdf062344f187cd801"
               }
             },
             "runtime": null,
@@ -5419,7 +5473,7 @@
             },
             "context": {
               "dbo": {
-                "id": "0d67c27e8f82d2a5d84594f58eea3c21"
+                "id": "81f3a573d4fa39e93f8c6cf3cb62450a"
               },
               "search": {
                 "expression": [
@@ -5491,7 +5545,7 @@
         "verb": "DELETE",
         "disabled": false,
         "app": {
-          "id": "84708b53a18c5ddf06dd3bdf5ce2eadf"
+          "id": "a0dec0589ec6e64f5f8d4043e0879d8e"
         },
         "cache": {
           "active": false,
@@ -5608,7 +5662,7 @@
             },
             "context": {
               "dbo": {
-                "id": "9013fec6b23172ba8ef3213a6fcd70ad"
+                "id": "db281d68b7ca1abdf062344f187cd801"
               }
             },
             "runtime": null,
@@ -5743,7 +5797,7 @@
             },
             "context": {
               "dbo": {
-                "id": "0d67c27e8f82d2a5d84594f58eea3c21"
+                "id": "81f3a573d4fa39e93f8c6cf3cb62450a"
               },
               "search": {
                 "expression": [
@@ -5808,7 +5862,7 @@
             },
             "context": {
               "dbo": {
-                "id": "9013fec6b23172ba8ef3213a6fcd70ad"
+                "id": "db281d68b7ca1abdf062344f187cd801"
               }
             },
             "runtime": null,
@@ -5836,7 +5890,7 @@
         "verb": "POST",
         "disabled": false,
         "app": {
-          "id": "84708b53a18c5ddf06dd3bdf5ce2eadf"
+          "id": "a0dec0589ec6e64f5f8d4043e0879d8e"
         },
         "cache": {
           "active": false,
@@ -6067,7 +6121,7 @@
             },
             "context": {
               "dbo": {
-                "id": "9013fec6b23172ba8ef3213a6fcd70ad"
+                "id": "db281d68b7ca1abdf062344f187cd801"
               }
             },
             "runtime": null,
@@ -6449,7 +6503,7 @@
             },
             "context": {
               "dbo": {
-                "id": "9013fec6b23172ba8ef3213a6fcd70ad"
+                "id": "db281d68b7ca1abdf062344f187cd801"
               }
             },
             "runtime": null,
@@ -6481,7 +6535,7 @@
             },
             "context": {
               "function": {
-                "id": "4315bed84a631f5fc015a192805bd85c"
+                "id": "565fb970cb72479e54c460577fc05fe0"
               }
             },
             "runtime": null,
@@ -6509,7 +6563,7 @@
         "verb": "POST",
         "disabled": false,
         "app": {
-          "id": "84708b53a18c5ddf06dd3bdf5ce2eadf"
+          "id": "a0dec0589ec6e64f5f8d4043e0879d8e"
         },
         "cache": {
           "active": false,
@@ -6842,7 +6896,7 @@
             },
             "context": {
               "function": {
-                "id": "ab04c2be0663b56946acdcb679f762be"
+                "id": "b864c426c9cd4ea8c9f753c2a2b0515c"
               }
             },
             "runtime": null,
@@ -6870,7 +6924,7 @@
         "verb": "POST",
         "disabled": false,
         "app": {
-          "id": "84708b53a18c5ddf06dd3bdf5ce2eadf"
+          "id": "a0dec0589ec6e64f5f8d4043e0879d8e"
         },
         "cache": {
           "active": false,
@@ -7113,7 +7167,7 @@
             },
             "context": {
               "function": {
-                "id": "c0b77af2dc064ffa7a9ada4fa94c160d"
+                "id": "5c029defd338097308c970ed97711460"
               }
             },
             "runtime": null,
@@ -7136,7 +7190,7 @@
       {
         "name": "vector_search",
         "description": "Search the indexed document and media knowledge base using semantic vector similarity with Gemini multimodal embeddings.",
-        "instructions": "Use this tool to search and retrieve facts, documentation, notes, specifications, images, and media files from the user's knowledge base to answer questions.",
+        "instructions": "Use this tool to search and retrieve facts, documentation, notes, specifications, images, and media files from the user's knowledge base to answer questions. When citing or referencing any retrieved documents, images, audio, or files, format links to the document as `[Document Title](#doc-<document_id>)`.",
         "docs": "",
         "enabled": true,
         "output": [],
@@ -7373,7 +7427,7 @@
             },
             "context": {
               "function": {
-                "id": "ab04c2be0663b56946acdcb679f762be"
+                "id": "b864c426c9cd4ea8c9f753c2a2b0515c"
               }
             },
             "runtime": null,
@@ -7389,7 +7443,7 @@
     "toolset": [],
     "app": [
       {
-        "name": "Vector",
+        "name": "Vector (vec)",
         "description": "Vector embedding pipeline, document ingestion, and similarity search endpoints.",
         "canonical": "vec",
         "swagger": false,
@@ -7436,7 +7490,7 @@
             "put": false
           }
         },
-        "guid": "84708b53a18c5ddf06dd3bdf5ce2eadf"
+        "guid": "a0dec0589ec6e64f5f8d4043e0879d8e"
       }
     ],
     "realtime_server": [],
@@ -7452,5 +7506,5 @@
     "service": [],
     "branch": []
   },
-  "sig": "-HO3JQHgq40z8Z_WIdgj8VAtL7s."
+  "sig": "N8a4wVZ4hcDNPKh9BffwpRbXoaw."
 }

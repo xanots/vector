@@ -93,7 +93,7 @@ export function ingestDocumentFn(
               text: ref("media_text_label"),
               media_data: ref("doc.media_data"),
               mime_type: ref("doc.mime_type"),
-              task_type: c.text("RETRIEVAL_DOCUMENT"),
+              task_type: c.text(opts.taskTypeDocument),
               api_key: inp("api_key"),
             },
             as: "single_embed_res",
@@ -102,6 +102,7 @@ export function ingestDocumentFn(
             table: chunk,
             row: {
               document_id: ref("doc.id"),
+              document_title: ref("doc.title"),
               chunk_index: c.int(0),
               content: ref("media_text_label"),
               mime_type: ref("doc.mime_type"),
@@ -131,7 +132,7 @@ export function ingestDocumentFn(
                 fn: embedFn,
                 input: {
                   text: ref("item.content"),
-                  task_type: c.text("RETRIEVAL_DOCUMENT"),
+                  task_type: c.text(opts.taskTypeDocument),
                   api_key: inp("api_key"),
                 },
                 as: "embed_res",
@@ -140,6 +141,7 @@ export function ingestDocumentFn(
                 table: chunk,
                 row: {
                   document_id: ref("doc.id"),
+                  document_title: ref("doc.title"),
                   chunk_index: ref("item.index"),
                   content: ref("item.content"),
                   mime_type: ref("doc.mime_type"),

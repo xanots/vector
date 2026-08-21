@@ -26,6 +26,7 @@ import type { GenerateEmbeddingFn } from "./embed.js";
 export interface SearchHit {
   id: number;
   document_id: number;
+  document_title?: string;
   chunk_index: number;
   content: string;
   mime_type: string;
@@ -99,7 +100,7 @@ export function searchVectorsFn(
               text: inp("query"),
               media_data: inp("query_media_data"),
               mime_type: inp("query_mime_type"),
-              task_type: c.text("RETRIEVAL_QUERY"),
+              task_type: c.text(opts.taskTypeQuery),
               api_key: inp("api_key"),
             },
             as: "embed_query_res",

@@ -30,12 +30,12 @@ describe("what the fixture actually covers", () => {
   });
 
   it("covers both tables", () => {
-    expect(payload().dbo.some((t: any) => t.name === "vector_document")).toBe(true);
-    expect(payload().dbo.some((t: any) => t.name === "vector_chunk")).toBe(true);
+    expect(payload().dbo.some((t: any) => t.name === "vec_document")).toBe(true);
+    expect(payload().dbo.some((t: any) => t.name === "vec_chunk")).toBe(true);
   });
 
   it("covers the 768-dim vector column and vector cosine index", () => {
-    const chunk = payload().dbo.find((t: any) => t.name === "vector_chunk");
+    const chunk = payload().dbo.find((t: any) => t.name === "vec_chunk");
     const embedding = chunk.schema.find((c: any) => c.name === "embedding");
     expect(embedding.type).toBe("vector");
     expect(embedding.vector.size).toBe(768);
