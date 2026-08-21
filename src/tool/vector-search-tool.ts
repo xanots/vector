@@ -42,7 +42,7 @@ export function vectorSearchTool(
       }),
     },
     stack: [
-      s.function.call({
+      s.function.run({
         fn: searchFn,
         input: {
           query: inp("query"),

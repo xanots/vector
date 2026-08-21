@@ -114,7 +114,7 @@ export function documentQueries(
         },
         as: "created_doc",
       }),
-      s.function.call({
+      s.function.run({
         fn: ingestFn,
         input: {
           document_id: ref("created_doc.id"),
@@ -330,7 +330,7 @@ export function documentQueries(
           chunk_overlap: ref("new_overlap"),
         },
       }),
-      s.function.call({
+      s.function.run({
         fn: ingestFn,
         input: {
           document_id: ref("doc.id"),

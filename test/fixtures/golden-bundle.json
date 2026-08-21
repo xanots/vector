@@ -2992,7 +2992,7 @@
                   },
                   {
                     "as": "single_embed_res",
-                    "name": "mvp:workspace_run_function",
+                    "name": "mvp:function",
                     "_xsid": "",
                     "addon": [],
                     "input": [
@@ -3040,7 +3040,9 @@
                       "customize": false
                     },
                     "context": {
-                      "id": "c0b77af2dc064ffa7a9ada4fa94c160d"
+                      "function": {
+                        "id": "c0b77af2dc064ffa7a9ada4fa94c160d"
+                      }
                     },
                     "runtime": null,
                     "disabled": false,
@@ -3191,7 +3193,7 @@
                 "run": [
                   {
                     "as": "chunks_res",
-                    "name": "mvp:workspace_run_function",
+                    "name": "mvp:function",
                     "_xsid": "",
                     "addon": [],
                     "input": [
@@ -3239,7 +3241,9 @@
                       "customize": false
                     },
                     "context": {
-                      "id": "5973da3ba3df86eb53ab80d1fb8aa59e"
+                      "function": {
+                        "id": "5973da3ba3df86eb53ab80d1fb8aa59e"
+                      }
                     },
                     "runtime": null,
                     "disabled": false,
@@ -3268,7 +3272,7 @@
                       "run": [
                         {
                           "as": "embed_res",
-                          "name": "mvp:workspace_run_function",
+                          "name": "mvp:function",
                           "_xsid": "",
                           "addon": [],
                           "input": [
@@ -3298,7 +3302,9 @@
                             "customize": false
                           },
                           "context": {
-                            "id": "c0b77af2dc064ffa7a9ada4fa94c160d"
+                            "function": {
+                              "id": "c0b77af2dc064ffa7a9ada4fa94c160d"
+                            }
                           },
                           "runtime": null,
                           "disabled": false,
@@ -4072,7 +4078,7 @@
                   },
                   {
                     "as": "embed_query_res",
-                    "name": "mvp:workspace_run_function",
+                    "name": "mvp:function",
                     "_xsid": "",
                     "addon": [],
                     "input": [
@@ -4120,7 +4126,9 @@
                       "customize": false
                     },
                     "context": {
-                      "id": "c0b77af2dc064ffa7a9ada4fa94c160d"
+                      "function": {
+                        "id": "c0b77af2dc064ffa7a9ada4fa94c160d"
+                      }
                     },
                     "runtime": null,
                     "disabled": false,
@@ -4848,7 +4856,7 @@
           },
           {
             "as": "ingest_res",
-            "name": "mvp:workspace_run_function",
+            "name": "mvp:function",
             "_xsid": "",
             "addon": [],
             "input": [
@@ -4869,7 +4877,9 @@
               "customize": false
             },
             "context": {
-              "id": "4315bed84a631f5fc015a192805bd85c"
+              "function": {
+                "id": "4315bed84a631f5fc015a192805bd85c"
+              }
             },
             "runtime": null,
             "disabled": false,
@@ -6447,7 +6457,7 @@
           },
           {
             "as": "ingest_res",
-            "name": "mvp:workspace_run_function",
+            "name": "mvp:function",
             "_xsid": "",
             "addon": [],
             "input": [
@@ -6468,7 +6478,9 @@
               "customize": false
             },
             "context": {
-              "id": "4315bed84a631f5fc015a192805bd85c"
+              "function": {
+                "id": "4315bed84a631f5fc015a192805bd85c"
+              }
             },
             "runtime": null,
             "disabled": false,
@@ -6761,7 +6773,7 @@
         "run": [
           {
             "as": "search_res",
-            "name": "mvp:workspace_run_function",
+            "name": "mvp:function",
             "_xsid": "",
             "addon": [],
             "input": [
@@ -6827,7 +6839,9 @@
               "customize": false
             },
             "context": {
-              "id": "ab04c2be0663b56946acdcb679f762be"
+              "function": {
+                "id": "ab04c2be0663b56946acdcb679f762be"
+              }
             },
             "runtime": null,
             "disabled": false,
@@ -7048,7 +7062,7 @@
         "run": [
           {
             "as": "embed_res",
-            "name": "mvp:workspace_run_function",
+            "name": "mvp:function",
             "_xsid": "",
             "addon": [],
             "input": [
@@ -7096,7 +7110,9 @@
               "customize": false
             },
             "context": {
-              "id": "c0b77af2dc064ffa7a9ada4fa94c160d"
+              "function": {
+                "id": "c0b77af2dc064ffa7a9ada4fa94c160d"
+              }
             },
             "runtime": null,
             "disabled": false,
@@ -7306,7 +7322,7 @@
         "run": [
           {
             "as": "search_res",
-            "name": "mvp:workspace_run_function",
+            "name": "mvp:function",
             "_xsid": "",
             "addon": [],
             "input": [
@@ -7354,7 +7370,9 @@
               "customize": false
             },
             "context": {
-              "id": "ab04c2be0663b56946acdcb679f762be"
+              "function": {
+                "id": "ab04c2be0663b56946acdcb679f762be"
+              }
             },
             "runtime": null,
             "disabled": false,
@@ -7432,5 +7450,5 @@
     "service": [],
     "branch": []
   },
-  "sig": "qAemijST_CEPPzuJAkq4nFvC41s."
+  "sig": "a7S9uE9vWNnaGij16jppImWDOOM."
 }

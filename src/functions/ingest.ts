@@ -87,7 +87,7 @@ export function ingestDocumentFn(
             "media_text_label",
             withFilters(ref("doc.content"), [fl.first_notempty(ref("doc.title"))]),
           ),
-          s.function.call({
+          s.function.run({
             fn: embedFn,
             input: {
               text: ref("media_text_label"),
@@ -113,7 +113,7 @@ export function ingestDocumentFn(
           setVar("final_chunk_count", c.int(1)),
         ],
         else: [
-          s.function.call({
+          s.function.run({
             fn: chunkFn,
             input: {
               content: ref("doc.content"),
@@ -127,7 +127,7 @@ export function ingestDocumentFn(
             list: ref("chunks_res.chunks"),
             as: "item",
             body: [
-              s.function.call({
+              s.function.run({
                 fn: embedFn,
                 input: {
                   text: ref("item.content"),

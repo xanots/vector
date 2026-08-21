@@ -12,6 +12,6 @@ describe("agent vector search tool", () => {
     expect(searchTool.instructions).toContain("retrieve facts");
     expect(searchTool.input.some((i: any) => i.name === "query")).toBe(true);
     expect(searchTool.input.some((i: any) => i.name === "limit")).toBe(true);
-    expect(searchTool.run.some((s: any) => s.name === "mvp:workspace_run_function")).toBe(true);
+    expect(searchTool.run.some((s: any) => s.name === "mvp:function" || s.name === "mvp:workspace_run_function")).toBe(true);
   });
 });

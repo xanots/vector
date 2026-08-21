@@ -94,7 +94,7 @@ export function searchVectorsFn(
             error_type: "badrequest",
             error: c.text("search_vectors: either `query` text, `query_media_data`, or `query_embedding` vector must be provided."),
           }),
-          s.function.call({
+          s.function.run({
             fn: embedFn,
             input: {
               text: inp("query"),

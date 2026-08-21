@@ -48,7 +48,7 @@ export function searchQueries(
       }),
     },
     stack: [
-      s.function.call({
+      s.function.run({
         fn: searchFn,
         input: {
           query: inp("query"),
@@ -94,7 +94,7 @@ export function searchQueries(
       }),
     },
     stack: [
-      s.function.call({
+      s.function.run({
         fn: embedFn,
         input: {
           text: inp("text"),
