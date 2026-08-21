@@ -28,7 +28,6 @@ export interface SearchHit {
   document_id: number;
   chunk_index: number;
   content: string;
-  media_data?: string;
   mime_type: string;
   metadata: Record<string, unknown>;
   distance: number;
@@ -109,7 +108,6 @@ export function searchVectorsFn(
       }),
       s.db.query({
         table: chunk,
-        output: ["id", "document_id", "chunk_index", "content", "mime_type", "metadata", "char_count"],
         eval: [
           {
             name: "embedding",

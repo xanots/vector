@@ -1,6 +1,6 @@
 /**
- * The `document_chunk` table — stores text chunks and multimodal assets, their Gemini 768-dimensional
- * vector embeddings, and an HNSW/pgvector cosine similarity index.
+ * The `document_chunk` table — stores text chunks and multimodal embeddings,
+ * with an HNSW/pgvector cosine similarity index.
  */
 import { table, f, type InferRow } from "@xanots/core";
 import { type ResolvedOptions, GEMINI_EMBEDDING_DIMENSIONS } from "../options.js";
@@ -26,10 +26,6 @@ export function chunkTable(opts: ResolvedOptions, document: DocumentTable) {
       content: f.text({
         required: false,
         description: "The text content or caption of this chunk.",
-      }),
-      media_data: f.text({
-        required: false,
-        description: "Base64 media data if this chunk is a multimodal asset.",
       }),
       mime_type: f.text({
         default: "text/plain",
@@ -75,7 +71,6 @@ export const PUBLIC_CHUNK_FIELDS = [
   "document_id",
   "chunk_index",
   "content",
-  "media_data",
   "mime_type",
   "metadata",
   "char_count",
@@ -87,7 +82,6 @@ export interface PublicChunk {
   document_id: number;
   chunk_index: number;
   content: string;
-  media_data?: string;
   mime_type: string;
   metadata: Record<string, unknown>;
   char_count: number;

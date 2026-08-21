@@ -103,7 +103,6 @@ export function ingestDocumentFn(
               document_id: ref("doc.id"),
               chunk_index: c.int(0),
               content: ref("media_text_label"),
-              media_data: ref("doc.media_data"),
               mime_type: ref("doc.mime_type"),
               embedding: ref("single_embed_res.embedding"),
               metadata: ref("doc.metadata"),

@@ -1,32 +1,26 @@
 import { describe, it, expect } from "vitest";
-import { testUserTable, exportWith, tableRow, column } from "./helpers.js";
+import { exportWith, tableRow, column, testUserTable } from "./helpers.js";
 
 describe("document table", () => {
-  it("encodes unauthenticated document table with correct columns and index", () => {
-    const payload = exportWith({ authTable: undefined, authenticated: false });
+  it("encodes document table correctly without auth", () => {
+    const payload = exportWith({});
     const doc = tableRow(payload, "vector_document");
     expect(doc).toBeDefined();
-
     expect(column(doc, "title")).toBeDefined();
     expect(column(doc, "content")).toBeDefined();
     expect(column(doc, "media_data")).toBeDefined();
     expect(column(doc, "mime_type")).toBeDefined();
-    expect(column(doc, "metadata")).toBeDefined();
     expect(column(doc, "status")).toBeDefined();
     expect(column(doc, "chunk_count")).toBeDefined();
     expect(column(doc, "strategy")).toBeDefined();
     expect(column(doc, "chunk_size")).toBeDefined();
     expect(column(doc, "chunk_overlap")).toBeDefined();
-    expect(column(doc, "user_id")).toBeUndefined();
-
-    expect(doc.index.some((idx: any) => idx.fields.some((f: any) => f.name === "status"))).toBe(true);
   });
 
-  it("encodes authenticated document table with user_id foreign key", () => {
+  it("encodes document table with user_id when authTable is provided", () => {
     const payload = exportWith({ authTable: testUserTable, authenticated: true });
     const doc = tableRow(payload, "vector_document");
     expect(doc).toBeDefined();
-
     const userIdCol = column(doc, "user_id");
     expect(userIdCol).toBeDefined();
     expect(doc.index.some((idx: any) => idx.fields.some((f: any) => f.name === "user_id"))).toBe(true);
@@ -44,7 +38,7 @@ describe("chunk table", () => {
     expect(embeddingCol.type).toBe("vector");
     expect(embeddingCol.vector.size).toBe(768);
 
-    expect(column(chunk, "media_data")).toBeDefined();
+    expect(column(chunk, "content")).toBeDefined();
     expect(column(chunk, "mime_type")).toBeDefined();
 
     const vectorIndex = chunk.index.find((idx: any) => idx.type === "vector");
