@@ -1,0 +1,49 @@
+# @xanots/vector
+
+> High-performance vector embedding, multimodal document ingestion, chunking, and similarity search module for XanoTS with Google Gemini Embeddings 2.
+
+## Quickstart
+
+```ts
+import { workspace, workspaceConfig } from "@xanots/core";
+import { registerVector } from "@xanots/vector";
+
+const ws = workspace("my-app").registerWorkspace(
+  workspaceConfig({
+    name: "my-app",
+    env: { GEMINI_API_KEY: process.env.GEMINI_API_KEY! },
+  }),
+);
+
+export const vector = registerVector(ws, {
+  apiKeyEnv: "GEMINI_API_KEY",
+  model: "gemini-embedding-2",
+  defaultStrategy: "markdown",
+});
+
+export default vector.xano;
+```
+
+## Exports
+
+- `createVector(opts?: VectorOptions): Vector` — Builds unattached vector defs.
+- `registerVector(xano, opts?: VectorOptions): RegisteredVector` — Builds and attaches defs to a workspace.
+- `GEMINI_EMBEDDING_DIMENSIONS` — Number constant `768`.
+- `CHUNK_STRATEGIES` — Array of chunking strategy names (`["fixed", "paragraph", "sentence", "markdown", "custom"]`).
+
+## Multimodal Support
+
+- **Model**: `gemini-embedding-2` (Google Gemini Embeddings 2).
+- **Dimensions**: Native 768-dim output vectors using Matryoshka Representation Learning (MRL).
+- **Supported Modalities**: Text, Markdown, Images (`image/png`, `image/jpeg`, `image/webp`), Audio (`audio/mp3`, `audio/wav`), and Video (`video/mp4`).
+- **Cross-Modal Search**: Supports text-to-text, text-to-image, and image-to-multimodal visual queries.
+
+## Endpoints
+
+- `POST /api:vector/vector/documents/create` — Ingests & indexes text or media documents (`{ title, content?, media_data?, mime_type?, metadata?, strategy?, chunk_size?, chunk_overlap? }`).
+- `GET /api:vector/vector/documents` — Lists documents (`{ page?, per_page? }`).
+- `GET /api:vector/vector/documents/{id}` — Gets document with all vector chunks (`{ id }`).
+- `DELETE /api:vector/vector/documents/{id}/delete` — Cascade-deletes document and chunks (`{ id }`).
+- `POST /api:vector/vector/documents/{id}/reindex` — Re-chunks and re-embeds document (`{ id, strategy?, chunk_size?, chunk_overlap? }`).
+- `POST /api:vector/vector/search` — Performs cosine vector search (`{ query?, query_media_data?, query_mime_type?, query_embedding?, limit?, threshold? }`).
+- `POST /api:vector/vector/embed` — Generates 768-dim embedding (`{ text?, media_data?, mime_type?, model? }`).
