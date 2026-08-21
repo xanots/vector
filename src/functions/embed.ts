@@ -33,6 +33,7 @@ const textVal = String($var.raw_text || "").trim();
 const mediaVal = String($var.raw_media || "").trim();
 const mimeVal = String($var.raw_mime || "image/png").trim();
 const modelId = String($var.model_identifier || "models/gemini-embedding-2");
+const taskTypeVal = String($var.raw_task_type || "").trim();
 
 if (textVal) {
   parts.push({ text: textVal });
@@ -46,11 +47,17 @@ if (mediaVal) {
   });
 }
 
-return {
+const req = {
   model: modelId,
   content: { parts },
   outputDimensionality: 768,
 };
+
+if (taskTypeVal) {
+  req.taskType = taskTypeVal;
+}
+
+return req;
 `.trim();
 
 /** Build the `generateEmbedding` function definition for the given options. */
@@ -73,6 +80,10 @@ export function generateEmbeddingFn(opts: ResolvedOptions): GenerateEmbeddingFn 
         default: "text/plain",
         description: "MIME type for media data (e.g. image/png, image/jpeg, audio/mp3, video/mp4).",
       }),
+      task_type: input.text({
+        required: false,
+        description: "Gemini embedding task type (RETRIEVAL_DOCUMENT, RETRIEVAL_QUERY, SEMANTIC_SIMILARITY, etc.).",
+      }),
       model: input.text({
         default: opts.model,
         description: "Google Gemini embedding model name (default: gemini-embedding-2).",
@@ -87,6 +98,7 @@ export function generateEmbeddingFn(opts: ResolvedOptions): GenerateEmbeddingFn 
       setVar("raw_text", inp("text")),
       setVar("raw_media", inp("media_data")),
       setVar("raw_mime", inp("mime_type")),
+      setVar("raw_task_type", inp("task_type")),
       s.precondition({
         expr: or(
           expr(ref("raw_text"), "!=", c.text("")),

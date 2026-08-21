@@ -93,6 +93,7 @@ export function ingestDocumentFn(
               text: ref("media_text_label"),
               media_data: ref("doc.media_data"),
               mime_type: ref("doc.mime_type"),
+              task_type: c.text("RETRIEVAL_DOCUMENT"),
               api_key: inp("api_key"),
             },
             as: "single_embed_res",
@@ -130,6 +131,7 @@ export function ingestDocumentFn(
                 fn: embedFn,
                 input: {
                   text: ref("item.content"),
+                  task_type: c.text("RETRIEVAL_DOCUMENT"),
                   api_key: inp("api_key"),
                 },
                 as: "embed_res",

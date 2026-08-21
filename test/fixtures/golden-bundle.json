@@ -1502,6 +1502,42 @@
             "description": "MIME type for media data (e.g. image/png, image/jpeg, audio/mp3, video/mp4)."
           },
           {
+            "name": "task_type",
+            "type": "text",
+            "_xsid": "",
+            "nullable": false,
+            "default": "",
+            "merge": false,
+            "hidden": [],
+            "override": [],
+            "customize": {},
+            "required": false,
+            "values": [],
+            "mode": "",
+            "format": "",
+            "sensitive": false,
+            "list": {
+              "min": "",
+              "max": ""
+            },
+            "vector": {
+              "size": 3
+            },
+            "access": "public",
+            "style": {
+              "type": "single"
+            },
+            "children": [],
+            "methods": [],
+            "market_item": {
+              "id": 0,
+              "version": 0,
+              "guid": ""
+            },
+            "is_settings_registry": false,
+            "description": "Gemini embedding task type (RETRIEVAL_DOCUMENT, RETRIEVAL_QUERY, SEMANTIC_SIMILARITY, etc.)."
+          },
+          {
             "name": "model",
             "type": "text",
             "_xsid": "",
@@ -1643,6 +1679,28 @@
             },
             "context": {
               "value": "mime_type",
+              "tag": "input",
+              "filters": []
+            },
+            "runtime": null,
+            "disabled": false,
+            "description": "",
+            "settings_registry": null
+          },
+          {
+            "as": "raw_task_type",
+            "name": "mvp:set_var",
+            "_xsid": "",
+            "addon": [],
+            "input": [],
+            "mocks": {},
+            "output": {
+              "items": [],
+              "filters": [],
+              "customize": false
+            },
+            "context": {
+              "value": "task_type",
               "tag": "input",
               "filters": []
             },
@@ -1899,7 +1957,7 @@
             "input": [
               {
                 "name": "code",
-                "value": "const parts = [];\nconst textVal = String($var.raw_text || \"\").trim();\nconst mediaVal = String($var.raw_media || \"\").trim();\nconst mimeVal = String($var.raw_mime || \"image/png\").trim();\nconst modelId = String($var.model_identifier || \"models/gemini-embedding-2\");\n\nif (textVal) {\n  parts.push({ text: textVal });\n}\nif (mediaVal) {\n  parts.push({\n    inlineData: {\n      mimeType: mimeVal,\n      data: mediaVal,\n    },\n  });\n}\n\nreturn {\n  model: modelId,\n  content: { parts },\n  outputDimensionality: 768,\n};",
+                "value": "const parts = [];\nconst textVal = String($var.raw_text || \"\").trim();\nconst mediaVal = String($var.raw_media || \"\").trim();\nconst mimeVal = String($var.raw_mime || \"image/png\").trim();\nconst modelId = String($var.model_identifier || \"models/gemini-embedding-2\");\nconst taskTypeVal = String($var.raw_task_type || \"\").trim();\n\nif (textVal) {\n  parts.push({ text: textVal });\n}\nif (mediaVal) {\n  parts.push({\n    inlineData: {\n      mimeType: mimeVal,\n      data: mediaVal,\n    },\n  });\n}\n\nconst req = {\n  model: modelId,\n  content: { parts },\n  outputDimensionality: 768,\n};\n\nif (taskTypeVal) {\n  req.taskType = taskTypeVal;\n}\n\nreturn req;",
                 "tag": "const",
                 "filters": [],
                 "ignore": false,
@@ -2988,6 +3046,15 @@
                         "children": []
                       },
                       {
+                        "name": "task_type",
+                        "value": "RETRIEVAL_DOCUMENT",
+                        "tag": "const",
+                        "filters": [],
+                        "ignore": false,
+                        "expand": false,
+                        "children": []
+                      },
+                      {
                         "name": "api_key",
                         "value": "api_key",
                         "tag": "input",
@@ -3235,6 +3302,15 @@
                               "name": "text",
                               "value": "item.content",
                               "tag": "var",
+                              "filters": [],
+                              "ignore": false,
+                              "expand": false,
+                              "children": []
+                            },
+                            {
+                              "name": "task_type",
+                              "value": "RETRIEVAL_DOCUMENT",
+                              "tag": "const",
                               "filters": [],
                               "ignore": false,
                               "expand": false,
@@ -4050,6 +4126,15 @@
                         "name": "mime_type",
                         "value": "query_mime_type",
                         "tag": "input",
+                        "filters": [],
+                        "ignore": false,
+                        "expand": false,
+                        "children": []
+                      },
+                      {
+                        "name": "task_type",
+                        "value": "RETRIEVAL_QUERY",
+                        "tag": "const",
                         "filters": [],
                         "ignore": false,
                         "expand": false,
@@ -7367,5 +7452,5 @@
     "service": [],
     "branch": []
   },
-  "sig": "pTaziiwVEgd_v7wzIfcr4zwcOfE."
+  "sig": "-HO3JQHgq40z8Z_WIdgj8VAtL7s."
 }

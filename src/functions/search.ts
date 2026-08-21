@@ -99,6 +99,7 @@ export function searchVectorsFn(
               text: inp("query"),
               media_data: inp("query_media_data"),
               mime_type: inp("query_mime_type"),
+              task_type: c.text("RETRIEVAL_QUERY"),
               api_key: inp("api_key"),
             },
             as: "embed_query_res",
