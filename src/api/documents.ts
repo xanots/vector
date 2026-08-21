@@ -9,6 +9,7 @@ import {
   c,
   inp,
   ref,
+  auth,
   col,
   expr,
   or,
@@ -31,7 +32,7 @@ import type {
 
 function authWhere(opts: ResolvedOptions) {
   if (opts.authenticated && opts.authTable) {
-    return expr(col("user_id"), "=", ref("$auth.id"));
+    return expr(col("user_id"), "=", auth("id"));
   }
   return undefined;
 }
@@ -109,7 +110,7 @@ export function documentQueries(
           strategy: inp("strategy"),
           chunk_size: inp("chunk_size"),
           chunk_overlap: inp("chunk_overlap"),
-          ...(opts.authenticated && opts.authTable ? { user_id: ref("$auth.id") } : {}),
+          ...(opts.authenticated && opts.authTable ? { user_id: auth("id") } : {}),
         },
         as: "created_doc",
       }),
@@ -191,6 +192,15 @@ export function documentQueries(
         error_type: "notfound",
         error: c.text("Document not found."),
       }),
+      ...(opts.authenticated && opts.authTable
+        ? [
+            s.precondition({
+              expr: expr(ref("doc.user_id", { safe: true }), "=", auth("id")),
+              error_type: "notfound",
+              error: c.text("Document not found."),
+            }),
+          ]
+        : []),
       s.db.query({
         table: chunk,
         where: expr(col("document_id"), "=", ref("doc.id")),
@@ -229,6 +239,15 @@ export function documentQueries(
         error_type: "notfound",
         error: c.text("Document not found."),
       }),
+      ...(opts.authenticated && opts.authTable
+        ? [
+            s.precondition({
+              expr: expr(ref("doc.user_id", { safe: true }), "=", auth("id")),
+              error_type: "notfound",
+              error: c.text("Document not found."),
+            }),
+          ]
+        : []),
       s.db.bulk.delete({
         table: chunk,
         where: expr(col("document_id"), "=", ref("doc.id")),
@@ -281,6 +300,15 @@ export function documentQueries(
         error_type: "notfound",
         error: c.text("Document not found."),
       }),
+      ...(opts.authenticated && opts.authTable
+        ? [
+            s.precondition({
+              expr: expr(ref("doc.user_id", { safe: true }), "=", auth("id")),
+              error_type: "notfound",
+              error: c.text("Document not found."),
+            }),
+          ]
+        : []),
       setVar(
         "new_strategy",
         withFilters(inp("strategy"), [fl.first_notempty(ref("doc.strategy"))]),
