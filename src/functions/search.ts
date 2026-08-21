@@ -109,6 +109,7 @@ export function searchVectorsFn(
       }),
       s.db.query({
         table: chunk,
+        output: ["id", "document_id", "chunk_index", "content", "mime_type", "metadata", "char_count"],
         eval: [
           {
             name: "embedding",

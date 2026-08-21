@@ -21,7 +21,7 @@ export function vectorSearchTool(
     description:
       "Search the indexed document and media knowledge base using semantic vector similarity with Gemini multimodal embeddings.",
     instructions:
-      "Use this tool to search and retrieve knowledge from the user's uploaded documents, notes, specifications, images, and media files to answer their questions.",
+      "Use this tool to search and retrieve facts, documentation, notes, specifications, images, and media files from the user's knowledge base to answer questions.",
     tags: opts.tags,
     input: {
       query: input.text({

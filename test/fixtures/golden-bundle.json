@@ -2957,6 +2957,40 @@
               "if": {
                 "run": [
                   {
+                    "as": "media_text_label",
+                    "name": "mvp:set_var",
+                    "_xsid": "",
+                    "addon": [],
+                    "input": [],
+                    "mocks": {},
+                    "output": {
+                      "items": [],
+                      "filters": [],
+                      "customize": false
+                    },
+                    "context": {
+                      "value": "doc.content",
+                      "tag": "var",
+                      "filters": [
+                        {
+                          "name": "first_notempty",
+                          "disabled": false,
+                          "arg": [
+                            {
+                              "value": "doc.title",
+                              "tag": "var",
+                              "filters": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "runtime": null,
+                    "disabled": false,
+                    "description": "",
+                    "settings_registry": null
+                  },
+                  {
                     "as": "single_embed_res",
                     "name": "mvp:workspace_run_function",
                     "_xsid": "",
@@ -2964,7 +2998,7 @@
                     "input": [
                       {
                         "name": "text",
-                        "value": "doc.content",
+                        "value": "media_text_label",
                         "tag": "var",
                         "filters": [],
                         "ignore": false,
@@ -3057,7 +3091,7 @@
                       },
                       {
                         "name": "content",
-                        "value": "doc.content",
+                        "value": "media_text_label",
                         "tag": "var",
                         "filters": [],
                         "ignore": false,
@@ -4137,9 +4171,38 @@
             "input": [],
             "mocks": {},
             "output": {
-              "items": [],
+              "items": [
+                {
+                  "name": "id",
+                  "children": []
+                },
+                {
+                  "name": "document_id",
+                  "children": []
+                },
+                {
+                  "name": "chunk_index",
+                  "children": []
+                },
+                {
+                  "name": "content",
+                  "children": []
+                },
+                {
+                  "name": "mime_type",
+                  "children": []
+                },
+                {
+                  "name": "metadata",
+                  "children": []
+                },
+                {
+                  "name": "char_count",
+                  "children": []
+                }
+              ],
               "filters": [],
-              "customize": false
+              "customize": true
             },
             "context": {
               "dbo": {
@@ -4759,8 +4822,8 @@
               },
               {
                 "name": "user_id",
-                "value": "$auth.id",
-                "tag": "var",
+                "value": "id",
+                "tag": "auth",
                 "filters": [],
                 "ignore": false,
                 "expand": false,
@@ -5026,8 +5089,8 @@
                         "filters": []
                       },
                       "right": {
-                        "operand": "$auth.id",
-                        "tag": "var",
+                        "operand": "id",
+                        "tag": "auth",
                         "filters": []
                       }
                     }
@@ -5248,6 +5311,71 @@
                       "right": {
                         "operand": "null",
                         "tag": "const:null",
+                        "filters": []
+                      }
+                    }
+                  }
+                ]
+              },
+              "error_type": "notfound",
+              "error": {
+                "value": "Document not found.",
+                "tag": "const"
+              }
+            },
+            "runtime": null,
+            "disabled": false,
+            "description": "",
+            "settings_registry": null
+          },
+          {
+            "as": "",
+            "name": "mvp:precondition",
+            "_xsid": "",
+            "addon": [],
+            "input": [],
+            "mocks": {},
+            "output": {
+              "items": [],
+              "filters": [],
+              "customize": false
+            },
+            "context": {
+              "expr": {
+                "expression": [
+                  {
+                    "type": "statement",
+                    "or": false,
+                    "group": {
+                      "expression": []
+                    },
+                    "statement": {
+                      "op": "=",
+                      "left": {
+                        "operand": "doc",
+                        "tag": "var",
+                        "filters": [
+                          {
+                            "name": "get",
+                            "disabled": false,
+                            "arg": [
+                              {
+                                "value": "user_id",
+                                "tag": "const",
+                                "filters": []
+                              },
+                              {
+                                "value": "null",
+                                "tag": "const:null",
+                                "filters": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "right": {
+                        "operand": "id",
+                        "tag": "auth",
                         "filters": []
                       }
                     }
@@ -5507,6 +5635,71 @@
                       "right": {
                         "operand": "null",
                         "tag": "const:null",
+                        "filters": []
+                      }
+                    }
+                  }
+                ]
+              },
+              "error_type": "notfound",
+              "error": {
+                "value": "Document not found.",
+                "tag": "const"
+              }
+            },
+            "runtime": null,
+            "disabled": false,
+            "description": "",
+            "settings_registry": null
+          },
+          {
+            "as": "",
+            "name": "mvp:precondition",
+            "_xsid": "",
+            "addon": [],
+            "input": [],
+            "mocks": {},
+            "output": {
+              "items": [],
+              "filters": [],
+              "customize": false
+            },
+            "context": {
+              "expr": {
+                "expression": [
+                  {
+                    "type": "statement",
+                    "or": false,
+                    "group": {
+                      "expression": []
+                    },
+                    "statement": {
+                      "op": "=",
+                      "left": {
+                        "operand": "doc",
+                        "tag": "var",
+                        "filters": [
+                          {
+                            "name": "get",
+                            "disabled": false,
+                            "arg": [
+                              {
+                                "value": "user_id",
+                                "tag": "const",
+                                "filters": []
+                              },
+                              {
+                                "value": "null",
+                                "tag": "const:null",
+                                "filters": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "right": {
+                        "operand": "id",
+                        "tag": "auth",
                         "filters": []
                       }
                     }
@@ -5901,6 +6094,71 @@
                       "right": {
                         "operand": "null",
                         "tag": "const:null",
+                        "filters": []
+                      }
+                    }
+                  }
+                ]
+              },
+              "error_type": "notfound",
+              "error": {
+                "value": "Document not found.",
+                "tag": "const"
+              }
+            },
+            "runtime": null,
+            "disabled": false,
+            "description": "",
+            "settings_registry": null
+          },
+          {
+            "as": "",
+            "name": "mvp:precondition",
+            "_xsid": "",
+            "addon": [],
+            "input": [],
+            "mocks": {},
+            "output": {
+              "items": [],
+              "filters": [],
+              "customize": false
+            },
+            "context": {
+              "expr": {
+                "expression": [
+                  {
+                    "type": "statement",
+                    "or": false,
+                    "group": {
+                      "expression": []
+                    },
+                    "statement": {
+                      "op": "=",
+                      "left": {
+                        "operand": "doc",
+                        "tag": "var",
+                        "filters": [
+                          {
+                            "name": "get",
+                            "disabled": false,
+                            "arg": [
+                              {
+                                "value": "user_id",
+                                "tag": "const",
+                                "filters": []
+                              },
+                              {
+                                "value": "null",
+                                "tag": "const:null",
+                                "filters": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "right": {
+                        "operand": "id",
+                        "tag": "auth",
                         "filters": []
                       }
                     }
@@ -6860,7 +7118,7 @@
       {
         "name": "vector_search",
         "description": "Search the indexed document and media knowledge base using semantic vector similarity with Gemini multimodal embeddings.",
-        "instructions": "Use this tool whenever you need to retrieve facts, documentation, guides, reference material, or media assets relevant to the user query or context.",
+        "instructions": "Use this tool to search and retrieve facts, documentation, notes, specifications, images, and media files from the user's knowledge base to answer questions.",
         "docs": "",
         "enabled": true,
         "output": [],
@@ -7174,5 +7432,5 @@
     "service": [],
     "branch": []
   },
-  "sig": "mVKFuhET3bala9Rt26B_sm850uw."
+  "sig": "qAemijST_CEPPzuJAkq4nFvC41s."
 }

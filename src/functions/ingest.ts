@@ -14,6 +14,8 @@ import {
   expr,
   and,
   obj,
+  withFilters,
+  fl,
   type FunctionDef,
   type InputDescriptor,
 } from "@xanots/core";
@@ -81,10 +83,14 @@ export function ingestDocumentFn(
           expr(ref("doc.media_data"), "!=", c.text("")),
         ),
         then: [
+          setVar(
+            "media_text_label",
+            withFilters(ref("doc.content"), [fl.first_notempty(ref("doc.title"))]),
+          ),
           s.function.call({
             fn: embedFn,
             input: {
-              text: ref("doc.content"),
+              text: ref("media_text_label"),
               media_data: ref("doc.media_data"),
               mime_type: ref("doc.mime_type"),
               api_key: inp("api_key"),
@@ -96,7 +102,7 @@ export function ingestDocumentFn(
             row: {
               document_id: ref("doc.id"),
               chunk_index: c.int(0),
-              content: ref("doc.content"),
+              content: ref("media_text_label"),
               media_data: ref("doc.media_data"),
               mime_type: ref("doc.mime_type"),
               embedding: ref("single_embed_res.embedding"),
