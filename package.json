@@ -1,6 +1,6 @@
 {
   "name": "@xanots/vector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Plug-and-play vector search & multimodal Gemini embedding pipeline (document/chunk tables, ingestion, chunking strategies, management APIs, and agent tool) as typed XanoTS defs.",
   "type": "module",
   "license": "MIT",
