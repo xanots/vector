@@ -1,4 +1,4 @@
-import { query, input, s, inp, ref, obj } from "@xanots/core";
+import { query, input, s, inp, ref, obj } from "@xanots/sdk";
 import { type ResolvedOptions, GEMINI_EMBEDDING_DIMENSIONS } from "../options.js";
 import type { VectorGroup } from "./group.js";
 import type { SearchVectorsFn } from "../functions/search.js";

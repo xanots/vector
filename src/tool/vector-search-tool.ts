@@ -1,7 +1,7 @@
 /**
  * `vector_search` — AI Agent Tool definition for semantic multimodal vector search.
  */
-import { tool, input, s, inp, ref, type ToolDef, type InputDescriptor } from "@xanots/core";
+import { tool, input, s, inp, ref, type ToolDef, type InputDescriptor } from "@xanots/sdk";
 import { type ResolvedOptions } from "../options.js";
 import type { SearchVectorsFn } from "../functions/search.js";
 

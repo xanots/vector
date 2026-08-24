@@ -6,7 +6,7 @@
  * ingestion workflows, and a ready-to-attach AI Agent knowledge retrieval tool.
  *
  * ```ts
- * import { workspace } from "@xanots/core";
+ * import { workspace } from "@xanots/sdk";
  * import { registerVector } from "@xanots/vector";
  *
  * export const vector = registerVector(workspace("my-app"), {

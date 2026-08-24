@@ -1,7 +1,7 @@
 /**
  * The `document` table — stores uploaded documents, media assets, and indexing status.
  */
-import { table, f, type TableDef, type InferRow } from "@xanots/core";
+import { table, f, type TableDef, type InferRow } from "@xanots/sdk";
 import {
   type ResolvedOptions,
   DOCUMENT_STATUSES,

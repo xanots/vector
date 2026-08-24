@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { InferResponse, StackTupleWidened } from "@xanots/core";
+import type { InferResponse, StackTupleWidened } from "@xanots/sdk";
 import { createVector } from "../src/index.js";
 import type {
   CreateDocumentResponse,

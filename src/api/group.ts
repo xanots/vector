@@ -1,7 +1,7 @@
 /**
  * The `Vector` API group def.
  */
-import { apiGroup } from "@xanots/core";
+import { apiGroup } from "@xanots/sdk";
 import type { ResolvedOptions } from "../options.js";
 
 /** Build the API group for the vector endpoints. */

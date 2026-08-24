@@ -5,7 +5,7 @@
 ## Quickstart
 
 ```ts
-import { workspace, workspaceConfig } from "@xanots/core";
+import { workspace, workspaceConfig } from "@xanots/sdk";
 import { registerVector } from "@xanots/vector";
 
 const ws = workspace("my-app").registerWorkspace(

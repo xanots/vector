@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { Xano } from "@xanots/core";
+import { Xano } from "@xanots/sdk";
 import { createVector, registerVector } from "../src/index.js";
 
 describe("registerVector and createVector", () => {

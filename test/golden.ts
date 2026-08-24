@@ -1,4 +1,4 @@
-import { Xano, table, f } from "@xanots/core";
+import { Xano, table, f } from "@xanots/sdk";
 import { registerVector } from "../src/index.js";
 
 export const GOLDEN_WORKSPACE_NAME = "xts-vector-golden";

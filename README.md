@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@xanots/vector.svg)](https://www.npmjs.com/package/@xanots/vector)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A complete, production-grade vector embedding, document ingestion, chunking, and semantic similarity search module for [XanoTS](https://github.com/xanots/core). Built around Google Gemini Multimodal Embeddings 2 (`gemini-embedding-2`) at **768 dimensions** with native PostgreSQL `pgvector` indexing and AI agent search tools.
+A complete, production-grade vector embedding, document ingestion, chunking, and semantic similarity search module for [XanoTS](https://github.com/xanots/sdk). Built around Google Gemini Multimodal Embeddings 2 (`gemini-embedding-2`) at **768 dimensions** with native PostgreSQL `pgvector` indexing and AI agent search tools.
 
 ---
 
@@ -21,7 +21,7 @@ A complete, production-grade vector embedding, document ingestion, chunking, and
 ## Installation
 
 ```bash
-npm install @xanots/vector @xanots/core
+npm install @xanots/vector @xanots/sdk
 ```
 
 ---
@@ -29,7 +29,7 @@ npm install @xanots/vector @xanots/core
 ## Quickstart
 
 ```ts
-import { workspace, workspaceConfig } from "@xanots/core";
+import { workspace, workspaceConfig } from "@xanots/sdk";
 import { registerVector } from "@xanots/vector";
 
 const ws = workspace("my-app").registerWorkspace(
@@ -142,7 +142,7 @@ const { results, count } = await res.json();
 Include the `vector_search` tool directly in your LLM agent or MCP toolset definitions:
 
 ```ts
-import { agent } from "@xanots/core";
+import { agent } from "@xanots/sdk";
 import { vector } from "./vector-setup.js";
 
 export const ragAgent = agent({

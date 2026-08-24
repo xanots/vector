@@ -2,7 +2,7 @@
  * Shared test fixtures and bundle introspection helpers.
  */
 import { createHash } from "node:crypto";
-import { table, f, Xano } from "@xanots/core";
+import { table, f, Xano } from "@xanots/sdk";
 import { createVector, registerVector, type VectorOptions } from "../src/index.js";
 
 /** A standard `auth: true` table for tests. */

@@ -13,7 +13,7 @@ import {
   obj,
   withFilters,
   fl,
-} from "@xanots/core";
+} from "@xanots/sdk";
 import {
   type ResolvedOptions,
   CHUNK_STRATEGIES,

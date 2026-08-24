@@ -2,7 +2,7 @@
  * The `document_chunk` table — stores text chunks and multimodal embeddings,
  * with an HNSW/pgvector cosine similarity index.
  */
-import { table, f, type InferRow } from "@xanots/core";
+import { table, f, type InferRow } from "@xanots/sdk";
 import { type ResolvedOptions, GEMINI_EMBEDDING_DIMENSIONS } from "../options.js";
 import type { DocumentTable } from "./document.js";
 

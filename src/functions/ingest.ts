@@ -18,7 +18,7 @@ import {
   fl,
   type FunctionDef,
   type InputDescriptor,
-} from "@xanots/core";
+} from "@xanots/sdk";
 import { type ResolvedOptions } from "../options.js";
 import type { DocumentTable } from "../tables/document.js";
 import type { ChunkTable } from "../tables/chunk.js";

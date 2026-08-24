@@ -7,7 +7,7 @@
 
 `@xanots/vector` is a XanoTS module providing an end-to-end vector embedding & similarity search pipeline using Google Gemini Embeddings (768 dimensions) and pgvector.
 
-There is **no runtime execution** inside this package: every export is a plain, typed XanoTS def object (`table()`, `defineFunction()`, `tool()`, `apiGroup()`, `query()`) or a def factory. All registration and compilation happens in the consumer's `@xanots/core` workspace compiler at `export()`.
+There is **no runtime execution** inside this package: every export is a plain, typed XanoTS def object (`table()`, `defineFunction()`, `tool()`, `apiGroup()`, `query()`) or a def factory. All registration and compilation happens in the consumer's `@xanots/sdk` workspace compiler at `export()`.
 
 ## Commands
 
@@ -46,7 +46,7 @@ npm run lint
 - **Idempotency WeakSet:** Core's duplicate-def guard compares def identity. Two `createVector` calls produce distinct objects sharing names, so `registerVector` keeps a `WeakSet<Xano>` to flag duplicate calls early with a clear diagnostic.
 - **Literal Stack Tuples:** Function and query stacks must remain literal tuples (`readonly Statement[]`) or `statements(...)` helpers. Spreading an untyped `Statement[]` collapses the stack tuple and widens `InferResponse` to `StackTupleWidened`. `test/types.test.ts` guards this.
 - **pgvector Cosine Search:** The HNSW index on `vector_chunk` uses `vector_cosine_ops`, and search evaluates `vector_cos_distance` sorted `asc`.
-- **Peer Range:** `@xanots/core` is a peer dependency (`>=2.0.15 <3.0.0`). Dev dependency is pinned exactly to `2.0.15`.
+- **Peer Range:** `@xanots/sdk` is a peer dependency (`>=2.0.15 <3.0.0`). Dev dependency is pinned exactly to `2.0.15`.
 
 ## The Golden-Bundle Contract
 
