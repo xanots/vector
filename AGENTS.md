@@ -46,7 +46,7 @@ npm run lint
 - **Idempotency WeakSet:** Core's duplicate-def guard compares def identity. Two `createVector` calls produce distinct objects sharing names, so `registerVector` keeps a `WeakSet<Xano>` to flag duplicate calls early with a clear diagnostic.
 - **Literal Stack Tuples:** Function and query stacks must remain literal tuples (`readonly Statement[]`) or `statements(...)` helpers. Spreading an untyped `Statement[]` collapses the stack tuple and widens `InferResponse` to `StackTupleWidened`. `test/types.test.ts` guards this.
 - **pgvector Cosine Search:** The HNSW index on `vector_chunk` uses `vector_cosine_ops`, and search evaluates `vector_cos_distance` sorted `asc`.
-- **Peer Range:** `@xanots/sdk` is a peer dependency (`>=2.0.15 <3.0.0`). Dev dependency is pinned exactly to `2.0.15`.
+- **Peer Range:** `@xanots/sdk` is a peer dependency (`>=0.0.46 <1.0.0`). Dev dependency is pinned exactly to `0.0.46`.
 
 ## The Golden-Bundle Contract
 
