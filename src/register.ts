@@ -100,10 +100,10 @@ export function registerVector<X extends Xano>(
   if (installed.has(xano)) {
     throw new Error(
       "registerVector: already called on this Xano instance. Register the vector set once — a second " +
-        "registration duplicates every def, which core cannot catch (the two sets are distinct objects " +
+        "registration duplicates every def, which the SDK cannot catch (the two sets are distinct objects " +
         'sharing names) and which surfaces at export() as "Duplicate object guid … shared by ' +
         '\\"dbo/vector_document\\" and \\"dbo/vector_document\\"". To run TWO vector pipelines in one workspace, ' +
-        "give the second one its own `routePrefix` AND `names`.",
+        "build the second with `createVector({ canonical, names: { searchTool } })` and register its defs yourself.",
     );
   }
 

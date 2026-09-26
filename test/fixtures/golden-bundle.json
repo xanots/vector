@@ -14,17 +14,6 @@
         "track_performance": true,
         "use_internal_docs": false
       },
-      "realtime": {
-        "hash": "",
-        "mode": "",
-        "enabled": false,
-        "channels": []
-      },
-      "documentation": {
-        "token": "",
-        "whitelist": {},
-        "require_token": false
-      },
       "swagger": false,
       "env": [],
       "settings": {
@@ -4991,7 +4980,7 @@
           "version": 0,
           "guid": ""
         },
-        "guid": "e39e6b8b4a727ef119556baed8105499"
+        "guid": "192577bc0e9c8a6e02aced32aa7cbfa0"
       },
       {
         "name": "vec/documents",
@@ -5209,7 +5198,7 @@
           "version": 0,
           "guid": ""
         },
-        "guid": "a15c2136cc67fd57f4e42f85827427ee"
+        "guid": "feeaccd4d7aa4a1db00e7ea3016f6cfb"
       },
       {
         "name": "vec/documents/{id}",
@@ -5533,7 +5522,7 @@
           "version": 0,
           "guid": ""
         },
-        "guid": "02ba91e0c30df04f7f19ad28c7aaa981"
+        "guid": "12b7d544fb246c5a0d05306f2d79fd1b"
       },
       {
         "name": "vec/documents/{id}/delete",
@@ -5878,7 +5867,7 @@
           "version": 0,
           "guid": ""
         },
-        "guid": "763301d37ff27d5685f49e43fe5ef134"
+        "guid": "9302c8c5f7f5a6a5bd1c9835a261f0dc"
       },
       {
         "name": "vec/documents/{id}/reindex",
@@ -6551,7 +6540,7 @@
           "version": 0,
           "guid": ""
         },
-        "guid": "18b64a07d1ed123fc7b20b36264e25b6"
+        "guid": "0b97adcfe0537f97317e46bf88ce24fe"
       },
       {
         "name": "vec/search",
@@ -6912,7 +6901,7 @@
           "version": 0,
           "guid": ""
         },
-        "guid": "e4bc57ac80642f873fc104972d21f311"
+        "guid": "944c47dcd78369a5fca761f48c81f3c3"
       },
       {
         "name": "vec/embed",
@@ -7183,7 +7172,7 @@
           "version": 0,
           "guid": ""
         },
-        "guid": "788d4cb089e2218aba56485de4a7e4d1"
+        "guid": "5572d86e02a17034fd8f0e57d033fd2d"
       }
     ],
     "tool": [
@@ -7493,6 +7482,8 @@
         "guid": "a0dec0589ec6e64f5f8d4043e0879d8e"
       }
     ],
+    "knowledge": [],
+    "knowledge_file": [],
     "realtime_server": [],
     "channel": [],
     "message": [],
@@ -7506,5 +7497,5 @@
     "service": [],
     "branch": []
   },
-  "sig": "N8a4wVZ4hcDNPKh9BffwpRbXoaw."
+  "sig": "qpsgwWsmAh2Vd6PoCpgaGlQuwTA."
 }
