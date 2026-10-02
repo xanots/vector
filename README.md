@@ -1,6 +1,6 @@
-# @xanots/vector
+# @xano-sdk/vector
 
-[![npm version](https://img.shields.io/npm/v/@xanots/vector.svg)](https://www.npmjs.com/package/@xanots/vector)
+[![npm version](https://img.shields.io/npm/v/@xano-sdk/vector.svg)](https://www.npmjs.com/package/@xano-sdk/vector)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A vector embedding, document ingestion, chunking, and semantic search module for [XanoTS](https://github.com/xanots/sdk). It uses Google Gemini Embeddings 2 (`gemini-embedding-2`) at **768 dimensions**, stores vectors in PostgreSQL `pgvector` with a cosine index, and ships an AI agent search tool.
@@ -26,18 +26,18 @@ Everything it exports is a typed XanoTS def. Nothing runs inside this package; y
 With the XanoTS CLI, which installs the package and wires it into `xano/index.ts`:
 
 ```bash
-xanots marketplace install @xanots/vector
+xanots marketplace install @xano-sdk/vector
 # or, for a new project:
-xanots init my-app --marketplace @xanots/vector
+xanots init my-app --marketplace @xano-sdk/vector
 ```
 
 Or manually:
 
 ```bash
-npm install @xanots/vector @xanots/sdk
+npm install @xano-sdk/vector @xano/sdk
 ```
 
-Requires `@xanots/sdk` `>=0.0.46 <1.0.0`.
+Requires `@xano/sdk` `>=1.0.0 <2.0.0`.
 
 ---
 
@@ -45,8 +45,8 @@ Requires `@xanots/sdk` `>=0.0.46 <1.0.0`.
 
 ```ts
 // xano/index.ts
-import { workspace, workspaceConfig } from "@xanots/sdk";
-import { registerVector } from "@xanots/vector";
+import { workspace, workspaceConfig } from "@xano/sdk";
+import { registerVector } from "@xano-sdk/vector";
 
 const ws = workspace("my-app").registerWorkspace(
   workspaceConfig({ name: "my-app", env: { GEMINI_API_KEY: "" } }),
@@ -177,7 +177,7 @@ Send `query_media_data` + `query_mime_type` to search with an image or audio cli
 Pass `vector.searchTool` in an agent's or MCP server's `tools`:
 
 ```ts
-import { agent } from "@xanots/sdk";
+import { agent } from "@xano/sdk";
 
 export const supportAgent = agent({
   name: "support_agent",

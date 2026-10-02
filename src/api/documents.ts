@@ -16,7 +16,7 @@ import {
   obj,
   withFilters,
   fl,
-} from "@xanots/sdk";
+} from "@xano/sdk";
 import { type ResolvedOptions, CHUNK_STRATEGIES } from "../options.js";
 import type { DocumentTable } from "../tables/document.js";
 import type { ChunkTable } from "../tables/chunk.js";

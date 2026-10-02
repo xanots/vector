@@ -45,7 +45,7 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           REPO: ${{ github.repository }}
-          NPM_PACKAGE: "@xanots/vector"
+          NPM_PACKAGE: "@xano-sdk/vector"
         run: |
           set -euo pipefail
           export TAG NAME URL BODY

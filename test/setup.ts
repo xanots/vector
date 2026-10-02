@@ -1,5 +1,5 @@
 import { afterEach } from "vitest";
-import { resetLockOverrides } from "@xanots/sdk";
+import { resetLockOverrides } from "@xano/sdk";
 
 afterEach(() => {
   resetLockOverrides();

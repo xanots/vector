@@ -1,13 +1,13 @@
 # AGENTS.md
 
 > For agents **consuming** the published package, see [llms.txt](llms.txt) instead.
-> This file is for agents **working on and maintaining** the `@xanots/vector` package itself.
+> This file is for agents **working on and maintaining** the `@xano-sdk/vector` package itself.
 
 ## What This Is
 
-`@xanots/vector` is a XanoTS module providing an end-to-end vector embedding & similarity search pipeline using Google Gemini Embeddings (768 dimensions) and pgvector.
+`@xano-sdk/vector` is a XanoTS module providing an end-to-end vector embedding & similarity search pipeline using Google Gemini Embeddings (768 dimensions) and pgvector.
 
-There is **no runtime execution** inside this package: every export is a plain, typed XanoTS def object (`table()`, `defineFunction()`, `tool()`, `apiGroup()`, `query()`) or a def factory. All registration and compilation happens in the consumer's `@xanots/sdk` workspace compiler at `export()`.
+There is **no runtime execution** inside this package: every export is a plain, typed XanoTS def object (`table()`, `defineFunction()`, `tool()`, `apiGroup()`, `query()`) or a def factory. All registration and compilation happens in the consumer's `@xano/sdk` workspace compiler at `export()`.
 
 ## Commands
 
@@ -48,11 +48,11 @@ npm run lint
 - **pgvector Cosine Search:** The HNSW index on `vector_chunk` uses `vector_cosine_ops`, and search evaluates `vector_cos_distance` sorted `asc`.
 - **Module manifest:** `package.json` carries a `"xanots"` field (`register: "registerVector"`, `returns: "handle"`, `options: {}`) so `xanots marketplace install` / `xanots init --marketplace` wire the module into `xano/index.ts` and bind the returned handle. Keep `register` in sync with the export name, and keep `options: {}` only while every option stays optional.
 - **Search is not owner-scoped:** with `authenticated`, document endpoints filter by `user_id`, but `searchVectorsFn` (and so `/search` and the agent tool) searches every chunk. The docs say so; change both together.
-- **Peer Range:** `@xanots/sdk` is a peer dependency (`>=0.0.46 <1.0.0`). Dev dependency is pinned exactly to `0.0.46`.
+- **Peer Range:** `@xano/sdk` is a peer dependency (`>=1.0.0 <2.0.0`). Dev dependency is pinned exactly to `1.0.0`. The window is `>=<floor> <2.0.0`: the floor is the lowest SDK the module is tested against, the ceiling is the next major.
 
 ## The Golden-Bundle Contract
 
-`test/fixtures/golden-bundle.json` is a byte-exact peer-drift tripwire. Any change to statement encoding or schema in `@xanots/sdk` breaks `test/bundle.test.ts`.
+`test/fixtures/golden-bundle.json` is a byte-exact peer-drift tripwire. Any change to statement encoding or schema in `@xano/sdk` breaks `test/bundle.test.ts`.
 
 Regenerating the fixture is a deliberate, reviewed action (`npm run fixture:regen && git diff test/fixtures/golden-bundle.json`).
 
@@ -62,7 +62,7 @@ Regenerating the fixture is a deliberate, reviewed action (`npm run fixture:rege
 
 ## Release
 
-1. Bump `version` in `package.json` according to SemVer (pre-1.0: a raised SDK peer floor or other consumer-visible change is a minor bump) and merge it to `main`.
+1. Bump `version` in `package.json` according to SemVer (versions start at 1.0.0 and only the patch number (1.0.x) increments for now, whatever the change; do not bump unless told) and merge it to `main`.
 2. Run `npm test && npm run lint && npm run build`.
 3. Verify `npm pack --dry-run` contains exactly the expected files.
 4. Publish: `npm publish --access public`.

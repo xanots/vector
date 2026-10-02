@@ -17,7 +17,7 @@ import {
   fl,
   type FunctionDef,
   type InputDescriptor,
-} from "@xanots/sdk";
+} from "@xano/sdk";
 import { type ResolvedOptions, GEMINI_EMBEDDING_DIMENSIONS } from "../options.js";
 import type { ChunkTable } from "../tables/chunk.js";
 import type { GenerateEmbeddingFn } from "./embed.js";
