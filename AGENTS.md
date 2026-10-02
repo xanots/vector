@@ -5,9 +5,9 @@
 
 ## What This Is
 
-`@xano-sdk/vector` is a XanoTS module providing an end-to-end vector embedding & similarity search pipeline using Google Gemini Embeddings (768 dimensions) and pgvector.
+`@xano-sdk/vector` is a Xano SDK module providing an end-to-end vector embedding & similarity search pipeline using Google Gemini Embeddings (768 dimensions) and pgvector.
 
-There is **no runtime execution** inside this package: every export is a plain, typed XanoTS def object (`table()`, `defineFunction()`, `tool()`, `apiGroup()`, `query()`) or a def factory. All registration and compilation happens in the consumer's `@xano/sdk` workspace compiler at `export()`.
+There is **no runtime execution** inside this package: every export is a plain, typed Xano SDK def object (`table()`, `defineFunction()`, `tool()`, `apiGroup()`, `query()`) or a def factory. All registration and compilation happens in the consumer's `@xano/sdk` workspace compiler at `export()`.
 
 ## Commands
 
@@ -46,7 +46,7 @@ npm run lint
 - **Idempotency WeakSet:** The SDK's duplicate-def guard compares def identity. Two `createVector` calls produce distinct objects sharing names, so `registerVector` keeps a `WeakSet<Xano>` to flag duplicate calls early with a clear diagnostic.
 - **Literal Stack Tuples:** Function and query stacks must remain literal tuples (`readonly Statement[]`) or `statements(...)` helpers. Spreading an untyped `Statement[]` collapses the stack tuple and widens `InferResponse` to `StackTupleWidened`. `test/types.test.ts` guards this.
 - **pgvector Cosine Search:** The HNSW index on `vector_chunk` uses `vector_cosine_ops`, and search evaluates `vector_cos_distance` sorted `asc`.
-- **Module manifest:** `package.json` carries a `"xanots"` field (`register: "registerVector"`, `returns: "handle"`, `options: {}`) so `xanots marketplace install` / `xanots init --marketplace` wire the module into `xano/index.ts` and bind the returned handle. Keep `register` in sync with the export name, and keep `options: {}` only while every option stays optional.
+- **Module manifest:** `package.json` carries a `"xanosdk"` field (`register: "registerVector"`, `returns: "handle"`, `options: {}`) so `xanosdk marketplace install` / `xanosdk init --marketplace` wire the module into `xano/index.ts` and bind the returned handle. Keep `register` in sync with the export name, and keep `options: {}` only while every option stays optional.
 - **Search is not owner-scoped:** with `authenticated`, document endpoints filter by `user_id`, but `searchVectorsFn` (and so `/search` and the agent tool) searches every chunk. The docs say so; change both together.
 - **Peer Range:** `@xano/sdk` is a peer dependency (`>=1.0.0 <2.0.0`). Dev dependency is pinned exactly to `1.0.0`. The window is `>=<floor> <2.0.0`: the floor is the lowest SDK the module is tested against, the ceiling is the next major.
 

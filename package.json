@@ -1,7 +1,7 @@
 {
   "name": "@xano-sdk/vector",
   "version": "1.0.0",
-  "description": "Plug-and-play vector search & multimodal Gemini embedding pipeline (document/chunk tables, ingestion, chunking strategies, management APIs, and agent tool) as typed XanoTS defs.",
+  "description": "Plug-and-play vector search & multimodal Gemini embedding pipeline (document/chunk tables, ingestion, chunking strategies, management APIs, and agent tool) as typed Xano SDK defs.",
   "type": "module",
   "license": "MIT",
   "publishConfig": {
@@ -10,7 +10,7 @@
   "author": "Xano",
   "keywords": [
     "xano",
-    "xanots",
+    "xanosdk",
     "xanoscript",
     "vector",
     "embeddings",
@@ -32,7 +32,7 @@
     "url": "https://github.com/xanots/vector/issues"
   },
   "sideEffects": false,
-  "xanots": {
+  "xanosdk": {
     "register": "registerVector",
     "returns": "handle",
     "options": {}
