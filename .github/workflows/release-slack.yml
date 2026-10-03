@@ -9,6 +9,10 @@ on:
         description: Existing release tag to (re-)announce, e.g. v2.0.0
         required: true
 
+# Reading the release is all this needs; it writes nothing back to the repo.
+permissions:
+  contents: read
+
 jobs:
   notify:
     # `released` already excludes prereleases; the tag check also skips
