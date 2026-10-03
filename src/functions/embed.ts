@@ -18,7 +18,7 @@ import {
   fl,
   type FunctionDef,
   type InputDescriptor,
-} from "@xanots/sdk";
+} from "@xano/sdk";
 import { type ResolvedOptions, GEMINI_EMBEDDING_DIMENSIONS } from "../options.js";
 
 /** Return type for generateEmbeddingFn. */

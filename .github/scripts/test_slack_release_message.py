@@ -14,8 +14,8 @@ import sys
 
 from slack_release_message import HEADER_LIMIT, SECTION_LIMIT, build, inline
 
-REPO = "xanots/auth"
-URL = "https://github.com/xanots/auth/releases/tag/v9.9.9"
+REPO = "xanots/vector"
+URL = "https://github.com/xanots/vector/releases/tag/v9.9.9"
 
 
 def sections(payload: dict) -> list[str]:
@@ -134,8 +134,8 @@ def test_boilerplate_stripped() -> None:
 def test_npm_button_is_optional_and_version_pinned() -> None:
     without = build(REPO, "v9.9.9", "n", URL, "x")
     assert len(without["blocks"][-1]["elements"]) == 1
-    with_pkg = build(REPO, "v9.9.9", "n", URL, "x", pkg="@xanots/auth")
-    assert with_pkg["blocks"][-1]["elements"][1]["url"].endswith("/@xanots/auth/v/9.9.9")
+    with_pkg = build(REPO, "v9.9.9", "n", URL, "x", pkg="@xano-sdk/vector")
+    assert with_pkg["blocks"][-1]["elements"][1]["url"].endswith("/@xano-sdk/vector/v/9.9.9")
 
 
 def test_injection_attempt_in_notes_stays_inert() -> None:
@@ -151,7 +151,7 @@ def test_release_template_renders_as_intended() -> None:
     rendering it here means a change to either file has to keep the other true.
     """
     template = (pathlib.Path(__file__).resolve().parents[1] / "RELEASE_TEMPLATE.md").read_text()
-    payload = build(REPO, "v9.9.9", "v9.9.9 — Three-to-five word theme", URL, template, pkg="@xanots/auth")
+    payload = build(REPO, "v9.9.9", "v9.9.9 — Three-to-five word theme", URL, template, pkg="@xano-sdk/vector")
     check_well_formed(payload)
 
     assert payload["blocks"][0]["text"]["text"] == "v9.9.9 — Three-to-five word theme"
@@ -159,7 +159,7 @@ def test_release_template_renders_as_intended() -> None:
     intro, highlights = sections(payload)
     assert "<!--" not in intro and "Slack" not in intro, "guidance comments must not leak"
     assert "SUMMARY PARAGRAPH." in intro
-    assert "npm install @xanots/auth@X.Y.Z" in intro
+    assert "npm install @xano-sdk/vector@X.Y.Z" in intro
     assert not intro.endswith("…"), "the template's own summary must fit the intro budget"
 
     # Every `##` change heading becomes a bullet; the trailing structural one does not.

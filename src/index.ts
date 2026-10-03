@@ -1,13 +1,13 @@
 /**
- * @xanots/vector — a plug-and-play vector embedding and semantic search pipeline for Xano.
+ * @xano-sdk/vector — a plug-and-play vector embedding and semantic search pipeline for Xano.
  *
  * Uses Google Gemini Embeddings 2 at 768 dimensions with pgvector cosine similarity search,
  * flexible chunking strategies (fixed, paragraph, sentence, markdown, custom), document
  * ingestion workflows, and a ready-to-attach AI Agent knowledge retrieval tool.
  *
  * ```ts
- * import { workspace } from "@xanots/sdk";
- * import { registerVector } from "@xanots/vector";
+ * import { workspace } from "@xano/sdk";
+ * import { registerVector } from "@xano-sdk/vector";
  *
  * export const vector = registerVector(workspace("my-app"), {
  *   apiKeyEnv: "GEMINI_API_KEY",

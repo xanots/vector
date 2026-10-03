@@ -1,7 +1,7 @@
 /**
- * Configuration options and validator for `@xanots/vector`.
+ * Configuration options and validator for `@xano-sdk/vector`.
  */
-import type { TableDef } from "@xanots/sdk";
+import type { TableDef } from "@xano/sdk";
 
 /** Supported text chunking strategies. */
 export const CHUNK_STRATEGIES = [

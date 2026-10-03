@@ -1,5 +1,5 @@
 <!--
-  Release notes template for @xanots/vector.
+  Release notes template for @xano-sdk/vector.
 
   Copy the body below (from the summary paragraph down), fill it in, and paste
   it into the GitHub release. HTML comments like this one are stripped before
@@ -48,7 +48,7 @@
 SUMMARY PARAGRAPH.
 
 ```bash
-npm install @xanots/vector@X.Y.Z
+npm install @xano-sdk/vector@X.Y.Z
 ```
 
 <!--

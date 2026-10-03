@@ -2,7 +2,7 @@
  * `createVector(opts)` — builds every def for one configuration.
  * `registerVector(xano, opts)` — builds and registers all defs on a Xano instance.
  */
-import type { Xano, AnyFunctionDef, AnyQueryDef } from "@xanots/sdk";
+import type { Xano, AnyFunctionDef, AnyQueryDef } from "@xano/sdk";
 import { resolveOptions, type VectorOptions, type ResolvedOptions } from "./options.js";
 import { documentTable } from "./tables/document.js";
 import { chunkTable } from "./tables/chunk.js";
@@ -83,8 +83,8 @@ export interface RegisteredVector<X extends Xano> extends Vector {
  * Build and register the full vector embedding & search pipeline on the given instance.
  *
  * ```ts
- * import { workspace } from "@xanots/sdk";
- * import { registerVector } from "@xanots/vector";
+ * import { workspace } from "@xano/sdk";
+ * import { registerVector } from "@xano-sdk/vector";
  *
  * export const vector = registerVector(workspace("my-app"), {
  *   apiKeyEnv: "GEMINI_API_KEY",

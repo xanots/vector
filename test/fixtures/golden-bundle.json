@@ -7429,6 +7429,8 @@
         "guid": "092cb1b8708895f5fa02030536ea0598"
       }
     ],
+    "prompt": [],
+    "resource": [],
     "toolset": [],
     "app": [
       {
@@ -7497,5 +7499,5 @@
     "service": [],
     "branch": []
   },
-  "sig": "qpsgwWsmAh2Vd6PoCpgaGlQuwTA."
+  "sig": "hnHK-KgNDk7SouGc_oZs5uX6YCM."
 }
